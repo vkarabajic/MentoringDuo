@@ -21,7 +21,7 @@ class App extends Component {
 					<Route path='/table'>
 						<PersonsTable />
 					</Route>
-					<Route path='/home'>
+					<Route path='/'>
 						<Home />
 					</Route>
 				</Switch>
