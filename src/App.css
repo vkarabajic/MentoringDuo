@@ -69,7 +69,7 @@ li {
 	}
 
 .list {
-	margin: 20px 70px 70px 70px
+	padding: 20px 100px
 }
 
 .list-title {
@@ -108,6 +108,23 @@ li {
 	width: 90%;
 	height: 2.23px;
 	margin-top: -30px;
+	}
+
+	/* Notifications */
+	.notifications{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	}
+
+	.btn-notif{
+		margin: 15px 20px 20px 20px
 	}
 
 /* Custom bg */

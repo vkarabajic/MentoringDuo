@@ -34,10 +34,6 @@ export default class PersonsList extends Component {
 			<>
 				<Header title={'Person List'} />
 				<div className='list'>
-					<h3
-						className={'list-title'}>
-						Person list
-					</h3>
 					<ListGroup>
 						<ListGroupItem
 							active
