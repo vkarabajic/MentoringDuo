@@ -110,3 +110,10 @@ li {
 	margin-top: -30px;
 	}
 
+/* Custom bg */
+
+.bg-infoCustom{
+	background-color: #4ea0f7;
+	color:white;
+}
+

@@ -1,8 +1,8 @@
-import ReactDOM from "react-dom";
 import React, { Component } from "react";
 import Persons from "../Persons/Persons";
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
+import { Table } from 'reactstrap';
 
 export default class PersonsList extends Component {
 	constructor(props) {
@@ -13,46 +13,53 @@ export default class PersonsList extends Component {
 	}
 
 	getPersonsInfo() {
-		let persons = this.state.persons.map(item => ({
+		let people = this.state.persons.map(item => ({
 			data: item
 		}));
-		return persons;
+		return people;
 	}
 
 	render() {
-		let person = this.getPersonsInfo();
+		let people = this.getPersonsInfo();
 		return (
-			<>
+			<div>
 				<Header title={'Table'} />
+				<div className="clearfix" style={{ padding: '20px 100px' }}>
 
-				{person.map(item => (
-					<table key={item.data.userId}>
-						<tbody>
+
+					<Table bordered hover striped>
+						<thead className="bg-infoCustom">
 							<tr>
+								<th>#</th>
 								<th>First Name</th>
 								<th>Last Name</th>
 								<th>Job Title</th>
 								<th>Email</th>
 							</tr>
-							<tr>
-								<td>
-									{item.data.firstName}
-								</td>
-								<td>
-									{item.data.lastName}
-								</td>
-								<td>
-									{item.data.jobTitleName}
-								</td>
-								<td>
-									{item.data.emailAddress}
-								</td>
-							</tr>
+						</thead>
+						<tbody>
+							{people.map((person, index) => (
+								<tr>
+									<th>{index + 1}</th>
+									<td>
+										{person.data.firstName}
+									</td>
+									<td>
+										{person.data.lastName}
+									</td>
+									<td>
+										{person.data.jobTitleName}
+									</td>
+									<td>
+										{person.data.emailAddress}
+									</td>
+								</tr>
+							))}
 						</tbody>
-					</table>
-				))}
-				< Footer redirectToHome={true} />
-			</>
+					</Table>
+					< Footer redirectToHome={true} routeName="about" />
+				</div>
+			</div>
 		);
 	}
 }
