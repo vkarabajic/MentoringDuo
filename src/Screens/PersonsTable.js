@@ -2,35 +2,95 @@ import React, { Component } from "react";
 import Persons from "../Persons/Persons";
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
-import { Table } from 'reactstrap';
+import { Table, Button, Container, Row, Col, Badge, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 export default class PersonsList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			persons: Persons.data
+			persons: Persons.data,
+			numberOfRecords: Persons.data.length,
+			displayedPerPage: 3,
+			rowNumber: 0,
+			toggle: false
 		};
+
+		this.paginationDown = this.paginationDown.bind(this)
+		this.paginationUp = this.paginationUp.bind(this)
 	}
 
+
 	getPersonsInfo() {
+		let { rowNumber, displayedPerPage } = this.state
 		let people = this.state.persons.map(item => ({
 			data: item
 		}));
-		return people;
+		return people.slice(rowNumber * displayedPerPage, (rowNumber + 1) * displayedPerPage);
 	}
+
+
+	paginationDown() {
+		let { rowNumber } = this.state
+		if (rowNumber !== 0) {
+			rowNumber = rowNumber - 1;
+			this.setState({ rowNumber })
+		}
+	}
+
+	paginationUp() {
+		let { rowNumber, numberOfRecords, displayedPerPage } = this.state
+		let allowNext = numberOfRecords / (displayedPerPage * (rowNumber + 1));
+		if (allowNext >= 1) {
+			rowNumber = rowNumber + 1;
+			this.setState({ rowNumber })
+		}
+	}
+
+	setPagination = (a) => {
+		let { displayedPerPage, rowNumber } = this.state
+		displayedPerPage = a
+		rowNumber = 0
+		this.setState({ displayedPerPage, rowNumber })
+	}
+
+
 
 	render() {
 		let people = this.getPersonsInfo();
 		return (
-			<div>
-				<Header title={'Table'} />
+			<Container>
+				<Row>
+					<Col>	<Header title={'Table'} /> </Col>
+				</Row>
 				<div className="clearfix" style={{ padding: '20px 100px' }}>
 
-
+					<Row>
+						<Col xs="2">
+							<ButtonDropdown isOpen={this.state.toggle} toggle={() => {
+								this.setState({ toggle: !this.state.toggle })
+							}}>
+								<DropdownToggle caret color="primary">
+									Select Pagination
+   					   </DropdownToggle>
+								<DropdownMenu>
+									<DropdownItem header>Select # of records shown in table</DropdownItem>
+									<DropdownItem onClick={() => this.setPagination(3)}>3</DropdownItem>
+									<DropdownItem onClick={() => this.setPagination(4)}>4</DropdownItem>
+									<DropdownItem onClick={() => this.setPagination(5)}>5</DropdownItem>
+								</DropdownMenu>
+							</ButtonDropdown>
+						</Col>
+						<Col xs="8">
+							<h3><Badge style={{ margin: '5px 20px' }} color="primary">{this.state.rowNumber + 1}</Badge></h3>
+						</Col>
+						<Col xs="2">
+							<Button color="primary" onClick={this.paginationDown} style={{ margin: '5px 10px' }}> {"<"} </Button>
+							<Button color="primary" onClick={this.paginationUp}> {">"} </Button>
+						</Col>
+					</Row>
 					<Table bordered hover striped>
 						<thead className="bg-infoCustom">
 							<tr>
-								<th>#</th>
 								<th>First Name</th>
 								<th>Last Name</th>
 								<th>Job Title</th>
@@ -38,9 +98,8 @@ export default class PersonsList extends Component {
 							</tr>
 						</thead>
 						<tbody>
-							{people.map((person, index) => (
+							{people.map((person) => (
 								<tr>
-									<th>{index + 1}</th>
 									<td>
 										{person.data.firstName}
 									</td>
@@ -55,11 +114,13 @@ export default class PersonsList extends Component {
 									</td>
 								</tr>
 							))}
+
 						</tbody>
 					</Table>
 					< Footer redirectToHome={true} routeName="about" />
 				</div>
-			</div>
+
+			</Container >
 		);
 	}
 }
