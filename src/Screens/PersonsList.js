@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import Persons from "../Persons/Persons";
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
-
+import { ListGroup, ListGroupItem, Container, Row, Col } from 'reactstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 export default class PersonsList extends Component {
 	constructor(props) {
 		super(props);
@@ -22,16 +23,24 @@ export default class PersonsList extends Component {
 		let person = this.getPersonsInfo();
 		return (
 			<>
-				<Header title={'Homepage'} />
-				{person.map(item =>
-					<li
-						key={item.data.userId}
-						item={item.data.firstName}
-						className={"list"}
-					>
-						{item.data.firstName}
-					</li>
-				)}
+				<Header title={'Person List'} />
+				<Container className="list-container">
+					<Row>
+						<Col xs="6">
+							<div className="list">
+								<h3>
+									Person list
+									</h3>
+								<ListGroup>
+									<ListGroupItem active tag="button" disabled action >Click on person for more details</ListGroupItem>
+									{person.map(item =>
+										<ListGroupItem tag="a" key={item.data.userId} action>{item.data.firstName + ' ' + item.data.lastName}</ListGroupItem>
+									)}
+								</ListGroup>
+							</div>
+						</Col>
+					</Row>
+				</Container>
 				< Footer redirectToHome={true} routeName='table' />
 			</>
 		);
