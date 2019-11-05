@@ -6,6 +6,7 @@ import Footer from '../HeaderFooter/Footer'
 export default class About extends Component {
 	constructor(props) {
 		super(props);
+
 	}
 
 	render() {
