@@ -4,7 +4,14 @@ import Footer from '../HeaderFooter/Footer'
 import { Container, Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 export default class About extends Component {
+<<<<<<< HEAD
 
+=======
+	constructor(props) {
+		super(props);
+
+	}
+>>>>>>> fcef458d37a8479e432c23d62113a270438c7cdf
 
 	render() {
 		return (
