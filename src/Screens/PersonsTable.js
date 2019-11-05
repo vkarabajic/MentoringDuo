@@ -58,69 +58,71 @@ export default class PersonsList extends Component {
 	render() {
 		let people = this.getPersonsInfo();
 		return (
-			<Container>
-				<Row>
-					<Col>	<Header title={'Table'} /> </Col>
-				</Row>
-				<div className="clearfix" style={{ padding: '20px 100px' }}>
+			<>
+				<Header title={'Table'} />
+				<Container>
 
-					<Row>
-						<Col xs="2">
-							<ButtonDropdown isOpen={this.state.toggle} toggle={() => {
-								this.setState({ toggle: !this.state.toggle })
-							}}>
-								<DropdownToggle caret color="primary">
-									Select Pagination
+
+					<div className="clearfix" style={{ padding: '20px 100px' }}>
+
+						<Row>
+							<Col xs="9">
+								<ButtonDropdown isOpen={this.state.toggle} toggle={() => {
+									this.setState({ toggle: !this.state.toggle })
+								}}>
+									<DropdownToggle caret color="primary">
+										Select Pagination
    					   </DropdownToggle>
-								<DropdownMenu>
-									<DropdownItem header>Select # of records shown in table</DropdownItem>
-									<DropdownItem onClick={() => this.setPagination(3)}>3</DropdownItem>
-									<DropdownItem onClick={() => this.setPagination(4)}>4</DropdownItem>
-									<DropdownItem onClick={() => this.setPagination(5)}>5</DropdownItem>
-								</DropdownMenu>
-							</ButtonDropdown>
-						</Col>
-						<Col xs="8">
-							<h3><Badge style={{ margin: '5px 20px' }} color="primary">{this.state.rowNumber + 1}</Badge></h3>
-						</Col>
-						<Col xs="2">
-							<Button color="primary" onClick={this.paginationDown} style={{ margin: '5px 10px' }}> {"<"} </Button>
-							<Button color="primary" onClick={this.paginationUp}> {">"} </Button>
-						</Col>
-					</Row>
-					<Table bordered hover striped>
-						<thead className="bg-infoCustom">
-							<tr>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Job Title</th>
-								<th>Email</th>
-							</tr>
-						</thead>
-						<tbody>
-							{people.map((person) => (
+									<DropdownMenu>
+										<DropdownItem header>Select # of records shown in table</DropdownItem>
+										<DropdownItem onClick={() => this.setPagination(3)}>3</DropdownItem>
+										<DropdownItem onClick={() => this.setPagination(4)}>4</DropdownItem>
+										<DropdownItem onClick={() => this.setPagination(5)}>5</DropdownItem>
+									</DropdownMenu>
+								</ButtonDropdown>
+							</Col>
+							<Col xs="1">
+								<h3 style={{ marginLeft: "100%", marginTop: "10%" }}>{this.state.rowNumber + 1}</h3>
+							</Col>
+							<Col xs="2" style={{ alignItems: "right" }}>
+								<Button color="primary" onClick={this.paginationDown} style={{ margin: '5px 10px' }}> {"<"} </Button>
+								<Button color="primary" onClick={this.paginationUp}> {">"} </Button>
+							</Col>
+						</Row>
+						<Table bordered hover striped>
+							<thead className="bg-infoCustom">
 								<tr>
-									<td>
-										{person.data.firstName}
-									</td>
-									<td>
-										{person.data.lastName}
-									</td>
-									<td>
-										{person.data.jobTitleName}
-									</td>
-									<td>
-										{person.data.emailAddress}
-									</td>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Job Title</th>
+									<th>Email</th>
 								</tr>
-							))}
+							</thead>
+							<tbody>
+								{people.map((person) => (
+									<tr>
+										<td>
+											{person.data.firstName}
+										</td>
+										<td>
+											{person.data.lastName}
+										</td>
+										<td>
+											{person.data.jobTitleName}
+										</td>
+										<td>
+											{person.data.emailAddress}
+										</td>
+									</tr>
+								))}
 
-						</tbody>
-					</Table>
-					< Footer redirectToHome={true} routeName="about" />
-				</div>
+							</tbody>
+						</Table>
+						< Footer redirectToHome={true} routeName="about" />
+					</div>
 
-			</Container >
+				</Container >
+			</>
 		);
 	}
 }
