@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
-import { Container, Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Container, Button, Form, FormGroup, Label, Input, Row, Col, Alert } from 'reactstrap';
 
 export default class About extends Component {
 
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			toggle: false
+		};
+	}
 
 	render() {
 		return (
@@ -27,10 +34,16 @@ export default class About extends Component {
 									<Label for="exampleId">Message</Label>
 									<Input type="textarea" name="text" id="exampleId" placeholder="Please send us your message 😄" />
 								</FormGroup>
-								<Button block style={{ margin: "20px 0" }} color="primary">Submit</Button>
 							</Form>
+							<Button block style={{ margin: "20px 0" }} onClick={() => { this.setState({ toggle: true }) }} color="primary">Submit</Button>
 						</Col>
-						<Col xs="4" />
+						<Col xs="4">
+							<Alert color="success" isOpen={this.state.toggle} toggle={() => {
+								this.setState({ toggle: !this.state.toggle })
+							}}>
+								Form submited successfuly
+     					 </Alert>
+						</Col>
 					</Row>
 				</Container>
 				<Footer redirectToHome={true} />

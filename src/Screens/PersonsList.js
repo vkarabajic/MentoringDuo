@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Persons from "../Persons/Persons";
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
-import { ListGroup, ListGroupItem, Container, Row, Col, Table } from 'reactstrap';
+import { ListGroup, ListGroupItem, Container, Table } from 'reactstrap';
 
 export default class PersonsList extends Component {
 	constructor(props) {
@@ -24,6 +24,7 @@ export default class PersonsList extends Component {
 		let selectedPerson = this.state.persons.filter(item =>
 			(item.userId === id))
 		this.setState({ currentPerson: selectedPerson })
+		window.scroll({ top: 0, left: 0, behavior: 'smooth' })
 	}
 
 	render() {
@@ -33,32 +34,10 @@ export default class PersonsList extends Component {
 		return (
 			<>
 				<Header title={'Person List'} />
-				<div className='list'>
-					<ListGroup>
-						<ListGroupItem
-							active
-							tag='button'
-							disabled
-							action>
-							Click on person for more details
-						</ListGroupItem>
-
-						{person.map(item =>
-							<ListGroupItem
-								tag='a'
-								key={item.data.userId}
-								onClick={() => this.openDetails(item.data.userId)}
-								action>
-								{item.data.firstName + ' ' + item.data.lastName}
-							</ListGroupItem>
-						)}
-					</ListGroup>
-				</div>
-
-				{currentPerson.length > 0 &&
-					<Container>
-						{currentPerson.map(item =>
-							<Table striped key={item.userId}>
+				<Container>
+					{currentPerson.length > 0 &&
+						currentPerson.map(item =>
+							<Table style={{ marginBottom: "20px" }} striped key={item.userId} bordered>
 								<thead>
 									<tr>
 										<th>Full name</th>
@@ -79,11 +58,33 @@ export default class PersonsList extends Component {
 								</tbody>
 							</Table>
 						)}
-					</Container>
-				}
-				< Footer
-					redirectToHome={true}
-					routeName='table' />
+					<div className='list' style={{ display: "block" }}>
+						<ListGroup>
+							<ListGroupItem
+								active
+								tag='button'
+								disabled
+								action>
+								Click on person for more details
+						</ListGroupItem>
+
+							{person.map(item =>
+								<ListGroupItem
+									tag='a'
+									key={item.data.userId}
+									onClick={() => this.openDetails(item.data.userId)}
+									action>
+									{item.data.firstName + ' ' + item.data.lastName}
+								</ListGroupItem>
+							)}
+						</ListGroup>
+					</div>
+
+					< Footer
+						redirectToHome={true}
+						routeName='table'
+					/>
+				</Container>
 			</>
 		);
 	}
