@@ -11,7 +11,7 @@ class Header extends Component {
 				<div className='header'>
 					<div className='header-title'>
 						{this.props.title}
-						{this.props.title == "Homepage" &&
+						{this.props.title === "Homepage" &&
 							<Button
 								outline
 								color="primary"

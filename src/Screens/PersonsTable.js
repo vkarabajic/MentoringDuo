@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Persons from "../Persons/Persons";
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
-import { Table, Button, Container, Row, Col, Badge, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Table, Button, Container, Row, Col, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 export default class PersonsList extends Component {
 	constructor(props) {

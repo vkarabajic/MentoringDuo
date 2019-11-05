@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Persons from "../Persons/Persons";
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
-import { ListGroup, ListGroupItem, Container, Row, Col, Table } from 'reactstrap';
+import { ListGroup, ListGroupItem, Container, Table } from 'reactstrap';
 
 export default class PersonsList extends Component {
 	constructor(props) {
