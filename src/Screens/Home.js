@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from '../HeaderFooter/Header'
 import Footer from '../HeaderFooter/Footer'
 import { Button, CarouselItem, UncontrolledCarousel, CarouselCaption } from 'reactstrap';
-import Slides from '../Slides/Slides'
+
 import img1 from '../Images/img1.jpg'
 import img2 from '../Images/img2.jpg'
 import img3 from '../Images/img3.jpg'
@@ -39,7 +39,7 @@ export default class PersonsList extends Component {
 		this.state = {
 			notificationCount: 0,
 			activeIndex: 0,
-			items: Slides.slides
+
 		}
 	}
 
